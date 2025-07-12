@@ -1,9 +1,11 @@
-package com.hirrao.health.dto.reponse;
+package com.hirrao.health.data.dto.reponse;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-public record Response<T>(int code, String message, T data) {
+public record Response<T>(int code, String message,
+                          @JsonInclude(JsonInclude.Include.NON_NULL) T data) {
     public static <T> ResponseEntity<Response<T>> ok(T data) {
         return ResponseEntity.ok(new Response<>(0, "Success", data));
     }

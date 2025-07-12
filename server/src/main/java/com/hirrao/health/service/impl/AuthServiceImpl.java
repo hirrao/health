@@ -1,12 +1,55 @@
 package com.hirrao.health.service.impl;
 
+import com.hirrao.health.component.JWTUtil;
+import com.hirrao.health.dao.UserDao;
+import com.hirrao.health.data.exception.ClientException;
 import com.hirrao.health.service.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.regex.Pattern;
 
 @Service
 public class AuthServiceImpl implements AuthService {
+    private static final String ALLOWED_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>/?~";
+    private static final String PASSWORD_REGEX = "^(?!\\d+$)[a-zA-Z0-9" + Pattern.quote(
+            ALLOWED_SYMBOLS) + "]{8,20}+$";
+    private final UserDao userDao;
+    private final PasswordEncoder passwordEncoder;
+    private final JWTUtil jwtUtil;
+
+    @Autowired
+    AuthServiceImpl(UserDao userDao, PasswordEncoder passwordEncoder,
+                    JWTUtil jwtUtil) {
+        this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtUtil = jwtUtil;
+    }
+
     @Override
-    public Integer register(String username, String password, String email) {
-        return 0;
+    public String register(String username, String password, String email) {
+        if (!username.matches("^[a-zA-Z0-9_]{6,20}+$")) {
+            throw new ClientException(HttpStatus.UNPROCESSABLE_ENTITY,
+                                      "用户名必须是6-20位的字母、数字或下划线");
+        }
+        if (!password.matches(PASSWORD_REGEX)) {
+            throw new ClientException(HttpStatus.UNPROCESSABLE_ENTITY,
+                                      "密码必须包含字母、数字和特殊符号，且长度在8-20位之间");
+        }
+        if (!email.matches(
+                "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new ClientException(HttpStatus.UNPROCESSABLE_ENTITY,
+                                      "邮箱格式不正确");
+        }
+        var user1 = userDao.getByUsername(username);
+        var user2 = userDao.getByEmail(email);
+        if (user1 != null || user2 != null) {
+            throw new ClientException(HttpStatus.CONFLICT, "用户名已被占用");
+        }
+        var saltPassword = passwordEncoder.encode(password);
+        var user = userDao.addUser(username, saltPassword, email);
+        return jwtUtil.createToken(user);
     }
 }

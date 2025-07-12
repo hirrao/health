@@ -24,6 +24,8 @@ dependencies {
     implementation(libs.spring.boot.starter.data.redis)
     implementation(libs.spring.boot.starter.security)
     implementation(libs.jjwt.api)
+    implementation(libs.jjwt.impl)
+    implementation(libs.jjwt.jackson)
     implementation(libs.druid.spring.boot.starter)
     implementation(libs.mybatis.plus.starter)
     implementation(libs.mybatis.plus.jsqlparser)
@@ -44,7 +46,7 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
-application{
+application {
     mainClass = "com.hirrao.health.HealthApplication"
 }
 
