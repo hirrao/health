@@ -6,7 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: health-server:latest
+    image: hirrao/health-server:latest
     environment:
       - APP_USER
       - APP_PASSWORD

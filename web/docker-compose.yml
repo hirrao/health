@@ -3,6 +3,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: health-web:latest
+    image: hirrao/health-web:latest
     ports:
       - '80:80'
