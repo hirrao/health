@@ -44,6 +44,10 @@ tasks.withType<JavaCompile> {
     options.encoding = "UTF-8"
 }
 
+application{
+    mainClass = "com.hirrao.health.HealthApplication"
+}
+
 tasks.withType<Test> {
     useJUnitPlatform()
 }
