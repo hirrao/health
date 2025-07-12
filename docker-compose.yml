@@ -5,3 +5,4 @@ networks:
 
 include:
   - ./server/docker-compose.yml
+  - ./web/docker-compose.yml
