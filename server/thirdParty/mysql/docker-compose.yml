@@ -1,0 +1,15 @@
+services:
+  mysql:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: health-mysql:latest
+    environment:
+      - APP_DATABASE=health
+      - APP_USER=hirrao
+      - APP_PASSWORD=hirrao
+    ports:
+      - "33306:3306"
+    volumes:
+      - ./data/mysql/log:/var/log/mysql
+      - ./data/mysql/data:/var/lib/mysql

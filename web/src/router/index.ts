@@ -7,15 +7,15 @@ const router = createRouter({
   routes: [
     {
       path: '/*',
-      component: () => import('@/pages/MainLayout.vue'),
+      component: () => import('@/pages/mainLayout/MainLayout.vue'),
       children: [
         {
           path: '/',
-          component: () => import('@/pages/Home.vue'),
+          component: () => import('@/pages/home/Home.vue'),
         },
         {
           path: '/test',
-          component: () => import('@/pages/Test.vue'),
+          component: () => import('@/pages/test/Test.vue'),
         },
       ],
     },

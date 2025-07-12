@@ -1,5 +1,6 @@
 plugins {
     java
+    application
     alias(libs.plugins.spring.boot)
     alias(libs.plugins.dependency.management)
 }

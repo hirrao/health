@@ -1,0 +1,14 @@
+include:
+  - ./thirdParty/docker-compose.yml
+
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: health-server:latest
+    environment:
+      - APP_USER
+      - APP_PASSWORD
+    ports:
+      - "8188:8188"
