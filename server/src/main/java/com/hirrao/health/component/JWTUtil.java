@@ -44,9 +44,9 @@ public class JWTUtil {
 
     public int decodeToken(String token) {
         return Integer.parseInt(Jwts.parser()
-                                    .decryptWith(secretKey)
+                                    .verifyWith(secretKey)
                                     .build()
-                                    .parseEncryptedClaims(token)
+                                    .parseSignedClaims(token)
                                     .getPayload()
                                     .getSubject());
     }
