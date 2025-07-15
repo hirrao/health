@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS `user`
     sex           TINYINT      NOT NULL DEFAULT 0,
     birthday      DATE         NOT NULL DEFAULT '2024-08-31',
     register_time TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    role          TINYINT      NOT NULL DEFAULT 0,
+    role          TINYINT      NOT NULL DEFAULT 1,
     UNIQUE KEY `idx_email` (`email`),
     UNIQUE KEY `idx_user_name` (username)
 );
