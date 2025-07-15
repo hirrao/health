@@ -17,4 +17,12 @@ public enum RoleEnum implements IEnum<Integer> {
     public Integer getValue() {
         return value;
     }
+
+    public boolean notBanned() {
+        return this.value > 0;
+    }
+
+    public boolean isAdmin() {
+        return this.value > ADMIN.getValue();
+    }
 }

@@ -1,5 +1,7 @@
 package com.hirrao.health.security;
 
+import com.hirrao.health.common.enums.RoleEnum;
+import com.hirrao.health.common.model.AuthUser;
 import com.hirrao.health.entity.User;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -29,8 +31,8 @@ public class JWTUtil {
         var claims = new HashMap<String, String>();
         claims.put("username", user.getUsername());
         claims.put("email", user.getEmail());
-        claims.put("permission", user.getRole()
-                                     .name());
+        claims.put("role", user.getRole()
+                               .name());
         return Jwts.builder()
                    .claims(claims)
                    .subject(String.valueOf(user.getUid()))
@@ -42,6 +44,18 @@ public class JWTUtil {
                    .compact();
     }
 
+    public AuthUser decodeTokenUser(String token) {
+        var claims = Jwts.parser()
+                         .verifyWith(secretKey)
+                         .build()
+                         .parseSignedClaims(token)
+                         .getPayload();
+        return new AuthUser(Long.parseLong(claims.getSubject()),
+                            (String) claims.get("username"),
+                            (String) claims.get("email"),
+                            (RoleEnum) claims.get("role"));
+    }
+
     public int decodeToken(String token) {
         return Integer.parseInt(Jwts.parser()
                                     .verifyWith(secretKey)
@@ -49,5 +63,15 @@ public class JWTUtil {
                                     .parseSignedClaims(token)
                                     .getPayload()
                                     .getSubject());
+    }
+
+    public boolean isTokenExpired(String token) {
+        var expirationDate = Jwts.parser()
+                                 .verifyWith(secretKey)
+                                 .build()
+                                 .parseSignedClaims(token)
+                                 .getPayload()
+                                 .getExpiration();
+        return expirationDate.before(new Date());
     }
 }
