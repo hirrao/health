@@ -53,7 +53,7 @@ public class JWTUtil {
         return new AuthUser(Long.parseLong(claims.getSubject()),
                             (String) claims.get("username"),
                             (String) claims.get("email"),
-                            (RoleEnum) claims.get("role"));
+                            RoleEnum.valueOf((String) claims.get("role")));
     }
 
     public int decodeToken(String token) {
