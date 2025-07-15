@@ -1,7 +1,7 @@
 package com.hirrao.health.handler;
 
-import com.hirrao.health.data.dto.reponse.Response;
-import com.hirrao.health.data.exception.ClientException;
+import com.hirrao.health.common.reponse.Response;
+import com.hirrao.health.common.exception.ClientException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

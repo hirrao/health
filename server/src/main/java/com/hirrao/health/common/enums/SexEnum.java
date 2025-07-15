@@ -1,16 +1,17 @@
-package com.hirrao.health.data.enums;
+package com.hirrao.health.common.enums;
 
+import com.baomidou.mybatisplus.annotation.EnumValue;
 import com.baomidou.mybatisplus.annotation.IEnum;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum RoleEnum implements IEnum<Integer> {
-    BANNED(-1),
-    NORMAL(1),
-    ADMIN(100),
-    SUPER_ADMIN(1000);
+public enum SexEnum implements IEnum<Integer> {
+    UNSET(0),
+    MALE(1),
+    FEMALE(2);
+    @EnumValue
     private final int value;
 
     @Override

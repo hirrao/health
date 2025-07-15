@@ -1,4 +1,4 @@
-package com.hirrao.health.component;
+package com.hirrao.health.security;
 
 import com.hirrao.health.entity.User;
 import io.jsonwebtoken.Jwts;
@@ -29,7 +29,7 @@ public class JWTUtil {
         var claims = new HashMap<String, String>();
         claims.put("username", user.getUsername());
         claims.put("email", user.getEmail());
-        claims.put("permission", user.getPermission()
+        claims.put("permission", user.getRole()
                                      .name());
         return Jwts.builder()
                    .claims(claims)

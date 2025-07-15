@@ -1,4 +1,4 @@
-package com.hirrao.health.data.dto.request;
+package com.hirrao.health.common.request;
 
 public record RegisterRequest(String username, String password, String email) {
 }

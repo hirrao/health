@@ -1,4 +1,4 @@
-package com.hirrao.health.data.dto.reponse;
+package com.hirrao.health.common.reponse;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;

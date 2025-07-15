@@ -1,8 +1,8 @@
 package com.hirrao.health.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.hirrao.health.data.enums.RoleEnum;
-import com.hirrao.health.data.enums.SexEnum;
+import com.hirrao.health.common.enums.RoleEnum;
+import com.hirrao.health.common.enums.SexEnum;
 import lombok.Data;
 
 import java.time.LocalDateTime;

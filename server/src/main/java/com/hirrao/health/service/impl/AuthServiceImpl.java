@@ -1,8 +1,8 @@
 package com.hirrao.health.service.impl;
 
-import com.hirrao.health.component.JWTUtil;
+import com.hirrao.health.security.JWTUtil;
 import com.hirrao.health.dao.UserDao;
-import com.hirrao.health.data.exception.ClientException;
+import com.hirrao.health.common.exception.ClientException;
 import com.hirrao.health.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

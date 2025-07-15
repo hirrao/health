@@ -1,8 +1,8 @@
 package com.hirrao.health.controller;
 
 
-import com.hirrao.health.data.dto.reponse.Response;
-import com.hirrao.health.data.dto.request.RegisterRequest;
+import com.hirrao.health.common.reponse.Response;
+import com.hirrao.health.common.request.RegisterRequest;
 import com.hirrao.health.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

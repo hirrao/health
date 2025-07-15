@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hirrao.health.dao.UserDao;
 import com.hirrao.health.dao.mapper.UserMapper;
-import com.hirrao.health.data.exception.ServerException;
+import com.hirrao.health.common.exception.ServerException;
 import com.hirrao.health.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

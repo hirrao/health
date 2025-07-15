@@ -1,4 +1,4 @@
-package com.hirrao.health.data.exception;
+package com.hirrao.health.common.exception;
 
 import lombok.Getter;
 import org.springframework.http.HttpStatus;
