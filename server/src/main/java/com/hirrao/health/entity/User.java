@@ -1,7 +1,7 @@
 package com.hirrao.health.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.hirrao.health.data.enums.PermissionEnum;
+import com.hirrao.health.data.enums.RoleEnum;
 import com.hirrao.health.data.enums.SexEnum;
 import lombok.Data;
 
@@ -17,7 +17,7 @@ public class User {
     private SexEnum sex;
     private String birthday;
     private LocalDateTime registerTime;
-    private PermissionEnum permission;
+    private RoleEnum role;
 
     public User(String username, String email, String saltPassword) {
         this.username = username;

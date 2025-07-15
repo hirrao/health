@@ -6,11 +6,11 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public enum PermissionEnum implements IEnum<Integer> {
+public enum RoleEnum implements IEnum<Integer> {
     BANNED(-1),
-    NORMAL(0),
-    ADMIN(1),
-    SUPER_ADMIN(2);
+    NORMAL(1),
+    ADMIN(100),
+    SUPER_ADMIN(1000);
     private final int value;
 
     @Override
