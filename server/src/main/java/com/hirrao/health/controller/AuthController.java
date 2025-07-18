@@ -1,7 +1,9 @@
 package com.hirrao.health.controller;
 
 
+import com.hirrao.health.common.reponse.LoginResponse;
 import com.hirrao.health.common.reponse.Response;
+import com.hirrao.health.common.request.LoginRequest;
 import com.hirrao.health.common.request.RegisterRequest;
 import com.hirrao.health.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,10 +24,17 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<Response<String>> register(
+    public ResponseEntity<Response<LoginResponse>> register(
             @RequestBody RegisterRequest request) {
         return Response.ok(
                 authService.register(request.username(), request.password(),
                                      request.email()));
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Response<LoginResponse>> login(
+            @RequestBody LoginRequest request) {
+        return Response.ok(
+                authService.login(request.username(), request.password()));
     }
 }

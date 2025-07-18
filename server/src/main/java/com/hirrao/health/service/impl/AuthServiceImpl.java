@@ -1,8 +1,9 @@
 package com.hirrao.health.service.impl;
 
-import com.hirrao.health.security.JWTUtil;
-import com.hirrao.health.dao.UserDao;
 import com.hirrao.health.common.exception.ClientException;
+import com.hirrao.health.common.reponse.LoginResponse;
+import com.hirrao.health.dao.UserDao;
+import com.hirrao.health.security.JWTUtil;
 import com.hirrao.health.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String register(String username, String password, String email) {
+    public LoginResponse register(String username, String password,
+                                  String email) {
         if (!username.matches("^[a-zA-Z0-9_]{6,20}+$")) {
             throw new ClientException(HttpStatus.UNPROCESSABLE_ENTITY,
                                       "用户名必须是6-20位的字母、数字或下划线");
@@ -50,6 +52,24 @@ public class AuthServiceImpl implements AuthService {
         }
         var saltPassword = passwordEncoder.encode(password);
         var user = userDao.addUser(username, saltPassword, email);
-        return jwtUtil.createToken(user);
+        return new LoginResponse(jwtUtil.createToken(user));
+    }
+
+    @Override
+    public LoginResponse login(String username, String password) {
+        var user = userDao.getByUsername(username);
+        if (user == null) {
+            throw new ClientException(HttpStatus.UNAUTHORIZED,
+                                      "用户名或密码错误");
+        }
+        if (!passwordEncoder.matches(password, user.getSaltPassword())) {
+            throw new ClientException(HttpStatus.UNAUTHORIZED,
+                                      "用户名或密码错误");
+        }
+        if (!user.getRole()
+                 .notBanned()) {
+            throw new ClientException(HttpStatus.FORBIDDEN, "用户已被禁用");
+        }
+        return new LoginResponse(jwtUtil.createToken(user));
     }
 }
