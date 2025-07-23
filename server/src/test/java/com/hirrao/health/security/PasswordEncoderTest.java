@@ -16,6 +16,7 @@ public class PasswordEncoderTest {
                   .isNotEqualTo(password)
                   .matches(encoded -> passwordEncoder.matches(password,
                                                               encoded));
-        System.out.println(passwordEncoder.encode("testPassword"));
+        //插入数据库数据生成的调试语句
+        System.out.println(passwordEncoder.encode("hirrao01"));
     }
 }

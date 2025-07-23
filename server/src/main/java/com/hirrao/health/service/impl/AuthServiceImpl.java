@@ -12,6 +12,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.regex.Pattern;
 
+/**
+ * @author hirrao
+ * 鉴权相关服务实现类
+ * @see AuthService
+ */
 @Service
 public class AuthServiceImpl implements AuthService {
     private static final String ALLOWED_SYMBOLS = "!@#$%^&*()_+-=[]{}|;:,.<>/?~";
@@ -29,6 +34,11 @@ public class AuthServiceImpl implements AuthService {
         this.jwtUtil = jwtUtil;
     }
 
+    /**
+     * 用户注册
+     * 用户名规则：6-20位的字母、数字或下划线
+     * 密码规则：8-20位，必须包含字母、数字和特殊符号
+     */
     @Override
     public LoginResponse register(String username, String password,
                                   String email) {
