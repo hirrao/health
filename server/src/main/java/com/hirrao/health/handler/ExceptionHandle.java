@@ -34,7 +34,7 @@ public class ExceptionHandle {
     public ResponseEntity<Response<String>> handleClientException(
             ClientException e) {
         log.warn("Client Error:", e);
-        return Response.error(e.getStatusCode(), -1, e.getMessage());
+        return Response.error(e.getStatusCode(), -1, e.getClientMessage());
     }
 
     @ExceptionHandler(Exception.class)

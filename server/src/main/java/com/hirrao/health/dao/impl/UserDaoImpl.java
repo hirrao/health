@@ -2,9 +2,9 @@ package com.hirrao.health.dao.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.hirrao.health.common.exception.ServerException;
 import com.hirrao.health.dao.UserDao;
 import com.hirrao.health.dao.mapper.UserMapper;
-import com.hirrao.health.common.exception.ServerException;
 import com.hirrao.health.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,5 +47,11 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, User> implements UserDa
             throw new ServerException("注册失败");
         }
         return getByUsername(username);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        userMapper.updateById(user);
+        return getByUid(user.getUid());
     }
 }
