@@ -12,6 +12,13 @@ public record Response<T>(int code, String message,
 
     public static <T> ResponseEntity<Response<T>> error(HttpStatus status,
                                                         int code,
+                                                        String message) {
+        return ResponseEntity.status(status)
+                             .body(new Response<>(code, message, null));
+    }
+
+    public static <T> ResponseEntity<Response<T>> error(HttpStatus status,
+                                                        int code,
                                                         String message,
                                                         T data) {
         return ResponseEntity.status(status)
