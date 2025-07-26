@@ -21,3 +21,7 @@ VALUES (1000000000000000001, 'test01@hirrao.com', 'testUser_1',
         '$2a$10$.NjaANnLt7dP51snruB80.Wx5OLqqBgFnQQexu8bIRli2kt6BRmLm'),
        (1000000000000000010, 'test10@hirrao.com', 'testUser_10',
         '$2a$10$.NjaANnLt7dP51snruB80.Wx5OLqqBgFnQQexu8bIRli2kt6BRmLm');
+
+INSERT INTO user (uid, email, username, salt_password, role)
+VALUES (1000000000000000000, 'testadmin@hirrao.com', 'hirrao',
+        '$2a$10$cSicYBembOOUvxJc4WEZxuyODJSWgqm0OzBmRXW0LAoAPu4IdN6Me', 1000);

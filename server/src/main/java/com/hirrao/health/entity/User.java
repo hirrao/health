@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.hirrao.health.common.enums.RoleEnum;
 import com.hirrao.health.common.enums.SexEnum;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
 @Data
+@NoArgsConstructor
 public class User {
     @TableId
     private Long uid;
