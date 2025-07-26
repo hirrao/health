@@ -1,5 +1,8 @@
 -- 虚假数据, 便于后续开发测试
 USE health;
+-- 用户部分
+--
+--
 -- 密码均为testPassword
 INSERT INTO user (uid, email, username, salt_password)
 VALUES (1000000000000000001, 'test01@hirrao.com', 'testUser_1',
@@ -25,4 +28,10 @@ VALUES (1000000000000000001, 'test01@hirrao.com', 'testUser_1',
 -- 超级管理员用户
 INSERT INTO user (uid, email, username, salt_password, role)
 VALUES (1000000000000000000, 'testadmin@hirrao.com', 'hirrao',
-        '$2a$10$cSicYBembOOUvxJc4WEZxuyODJSWgqm0OzBmRXW0LAoAPu4IdN6Me', 1000)
+        '$2a$10$cSicYBembOOUvxJc4WEZxuyODJSWgqm0OzBmRXW0LAoAPu4IdN6Me', 1000);
+
+-- 健康一言
+--
+--
+INSERT INTO health_advice (id, title, image, content, author)
+VALUES (1000000000000000001, '测试内容', NULL, '测试文本0001', 1000000000000000000);
