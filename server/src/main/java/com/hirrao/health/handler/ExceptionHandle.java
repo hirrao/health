@@ -39,7 +39,7 @@ public class ExceptionHandle {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Response<String>> handleException(Exception e) {
-        log.error("An error occurred: {}", e.getMessage());
+        log.error("An error occurred:", e);
         return Response.error(HttpStatus.INTERNAL_SERVER_ERROR, -1,
                               e.getMessage());
     }
