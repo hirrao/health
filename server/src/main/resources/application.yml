@@ -7,11 +7,17 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:33306/health?useSSL=false&allowPublicKeyRetrieval=true
+    url: ${MYSQL_URL:jdbc:mysql://127.0.0.1:33306/health?useSSL=false&allowPublicKeyRetrieval=true}
     username: ${APP_USER:hirrao}
     password: ${APP_PASSWORD:hirrao}
+  data:
+    redis:
+      url: ${REDIS_URL:redis://127.0.0.1:6379}
 
 jwt:
   secret: ${JWT_SECRET:HS512hirrao3uXXdI4dZJ4dnZLKa9zJtV9wL2bE4rD6cU8fG1hN3kM5pQ7s}
   issuer: ${JWT_ISSUER:hirrao}
   expiration: ${JWT_EXPIRATION:604800}
+
+file:
+  images: ${IMAGES_UPLOAD_DIR:/data/images}

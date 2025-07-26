@@ -54,4 +54,13 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, User> implements UserDa
         userMapper.updateById(user);
         return getByUid(user.getUid());
     }
+
+    @Override
+    public String getNameById(Long author) {
+        var wrapper = new LambdaQueryWrapper<User>();
+        wrapper.eq(User::getUid, author)
+               .select(User::getUsername);
+        var user = userMapper.selectOne(wrapper);
+        return user != null ? user.getUsername() : null;
+    }
 }

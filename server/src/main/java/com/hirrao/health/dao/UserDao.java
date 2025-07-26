@@ -15,4 +15,6 @@ public interface UserDao extends IService<User> {
     User addUser(String username, String password, String email);
 
     User updateUser(User user);
+
+    String getNameById(Long author);
 }
