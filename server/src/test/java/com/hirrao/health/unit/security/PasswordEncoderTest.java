@@ -1,5 +1,6 @@
-package com.hirrao.health.security;
+package com.hirrao.health.unit.security;
 
+import com.hirrao.health.security.SecurityConfig;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.security.crypto.password.PasswordEncoder;

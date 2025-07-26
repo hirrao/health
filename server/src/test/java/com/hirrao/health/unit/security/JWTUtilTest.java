@@ -1,7 +1,8 @@
-package com.hirrao.health.security;
+package com.hirrao.health.unit.security;
 
 import com.hirrao.health.common.enums.RoleEnum;
 import com.hirrao.health.entity.User;
+import com.hirrao.health.security.JWTUtil;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
