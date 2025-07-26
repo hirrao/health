@@ -1,5 +1,8 @@
 services:
   redis:
-    image: redis:8.0.3-alpine
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hirrao/health-redis:latest
     ports:
       - "6379:6379"
