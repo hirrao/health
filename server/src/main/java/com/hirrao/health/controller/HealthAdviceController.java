@@ -1,14 +1,12 @@
 package com.hirrao.health.controller;
 
+import com.hirrao.health.common.response.HealthAdviceArticleListResponse;
 import com.hirrao.health.common.response.HealthAdviceArticleResponse;
 import com.hirrao.health.common.response.Response;
 import com.hirrao.health.service.HealthAdviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/health-advice")
@@ -19,6 +17,12 @@ public class HealthAdviceController {
     @Autowired
     public HealthAdviceController(HealthAdviceService healthAdviceService) {
         this.healthAdviceService = healthAdviceService;
+    }
+
+    @GetMapping
+    public ResponseEntity<Response<HealthAdviceArticleListResponse>> getByPage(
+            @RequestParam(value = "page", required = false, defaultValue = "1") long page) {
+        return Response.ok(healthAdviceService.getByPage(page));
     }
 
     @GetMapping("/{id}")

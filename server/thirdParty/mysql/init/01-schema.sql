@@ -26,5 +26,5 @@ CREATE TABLE IF NOT EXISTS `health_advice`
     update_time TIMESTAMP    NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     FOREIGN KEY (author) REFERENCES user (uid) ON DELETE SET NULL,
     FULLTEXT KEY `idx_title` (title) WITH PARSER ngram,
-    KEY `idx_create_time` (create_time DESC)
+    KEY `idx_update_time` (update_time DESC)
 )

@@ -31,4 +31,18 @@ public class HealthAdviceTest {
         }
     }
 
+    @Nested
+    class getByPageTest {
+        @Test
+        public void getByPageSuccess() throws Exception {
+            mockMvc.perform(
+                           get("/health-advice?page=1").contentType(
+                                   "application/json"))
+                   .andExpectAll(status().isOk(),
+                                 content().contentType("application/json"),
+                                 jsonPath("$.data.articles[0].authorName")
+                                         .value("hirrao"));
+        }
+    }
+
 }

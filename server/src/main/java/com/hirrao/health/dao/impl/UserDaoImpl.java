@@ -9,6 +9,10 @@ import com.hirrao.health.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
 @Service
 public class UserDaoImpl extends ServiceImpl<UserMapper, User> implements UserDao {
     private final UserMapper userMapper;
@@ -56,11 +60,21 @@ public class UserDaoImpl extends ServiceImpl<UserMapper, User> implements UserDa
     }
 
     @Override
-    public String getNameById(Long author) {
+    public String getNameById(Long id) {
         var wrapper = new LambdaQueryWrapper<User>();
-        wrapper.eq(User::getUid, author)
+        wrapper.eq(User::getUid, id)
                .select(User::getUsername);
         var user = userMapper.selectOne(wrapper);
         return user != null ? user.getUsername() : null;
+    }
+
+    @Override
+    public Map<Long, String> getNamesByIds(List<Long> list) {
+        var wrapper = new LambdaQueryWrapper<User>().in(User::getUid, list)
+                                                    .select(User::getUid,
+                                                            User::getUsername);
+        List<User> users = userMapper.selectList(wrapper);
+        return users.stream()
+                    .collect(Collectors.toMap(User::getUid, User::getUsername));
     }
 }
