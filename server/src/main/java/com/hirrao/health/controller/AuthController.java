@@ -1,8 +1,8 @@
 package com.hirrao.health.controller;
 
 import com.hirrao.health.common.model.AuthUser;
-import com.hirrao.health.common.reponse.LoginResponse;
-import com.hirrao.health.common.reponse.Response;
+import com.hirrao.health.common.response.LoginResponse;
+import com.hirrao.health.common.response.Response;
 import com.hirrao.health.common.request.LoginRequest;
 import com.hirrao.health.common.request.RegisterRequest;
 import com.hirrao.health.common.request.ResetPasswordByPasswordRequest;

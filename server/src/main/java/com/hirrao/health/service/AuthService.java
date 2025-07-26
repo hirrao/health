@@ -1,6 +1,6 @@
 package com.hirrao.health.service;
 
-import com.hirrao.health.common.reponse.LoginResponse;
+import com.hirrao.health.common.response.LoginResponse;
 import org.springframework.stereotype.Service;
 
 @Service

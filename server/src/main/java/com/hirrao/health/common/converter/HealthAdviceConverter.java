@@ -1,6 +1,6 @@
 package com.hirrao.health.common.converter;
 
-import com.hirrao.health.common.reponse.HealthAdviceArticleResponse;
+import com.hirrao.health.common.response.HealthAdviceArticleResponse;
 import com.hirrao.health.entity.HealthAdvice;
 import org.mapstruct.Context;
 import org.mapstruct.Mapper;

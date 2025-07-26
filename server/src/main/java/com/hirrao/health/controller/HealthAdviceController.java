@@ -1,7 +1,7 @@
 package com.hirrao.health.controller;
 
-import com.hirrao.health.common.reponse.HealthAdviceArticleResponse;
-import com.hirrao.health.common.reponse.Response;
+import com.hirrao.health.common.response.HealthAdviceArticleResponse;
+import com.hirrao.health.common.response.Response;
 import com.hirrao.health.service.HealthAdviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

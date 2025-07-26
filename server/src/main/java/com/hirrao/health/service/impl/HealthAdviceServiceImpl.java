@@ -3,7 +3,7 @@ package com.hirrao.health.service.impl;
 import com.hirrao.health.common.converter.HealthAdviceConverter;
 import com.hirrao.health.common.enums.RedisKeyEnum;
 import com.hirrao.health.common.exception.ClientException;
-import com.hirrao.health.common.reponse.HealthAdviceArticleResponse;
+import com.hirrao.health.common.response.HealthAdviceArticleResponse;
 import com.hirrao.health.dao.HealthAdviceDao;
 import com.hirrao.health.dao.UserDao;
 import com.hirrao.health.service.HealthAdviceService;

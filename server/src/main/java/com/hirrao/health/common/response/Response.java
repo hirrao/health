@@ -1,4 +1,4 @@
-package com.hirrao.health.common.reponse;
+package com.hirrao.health.common.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.springframework.http.HttpStatus;

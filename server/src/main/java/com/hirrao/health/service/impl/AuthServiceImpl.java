@@ -2,7 +2,7 @@ package com.hirrao.health.service.impl;
 
 import com.hirrao.health.common.exception.ClientException;
 import com.hirrao.health.common.exception.ServerException;
-import com.hirrao.health.common.reponse.LoginResponse;
+import com.hirrao.health.common.response.LoginResponse;
 import com.hirrao.health.dao.UserDao;
 import com.hirrao.health.security.JWTUtil;
 import com.hirrao.health.service.AuthService;

@@ -1,4 +1,4 @@
-package com.hirrao.health.common.reponse;
+package com.hirrao.health.common.response;
 
 import java.time.LocalDateTime;
 
