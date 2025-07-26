@@ -1,3 +1,4 @@
+SET NAMES 'utf8mb4';
 USE test;
 -- 密码均为testPassword
 INSERT INTO user (uid, email, username, salt_password)

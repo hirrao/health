@@ -1,3 +1,4 @@
+SET NAMES 'utf8mb4';
 USE health;
 
 CREATE TABLE IF NOT EXISTS `user`

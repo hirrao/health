@@ -1,3 +1,4 @@
+SET NAMES 'utf8mb4';
 -- 虚假数据, 便于后续开发测试
 USE health;
 -- 用户部分
