@@ -1,0 +1,9 @@
+services:
+  rabbitmq:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: hirrao/health-rabbitmq
+    container_name: health-rabbitmq
+    ports:
+      - "5672:5672"
