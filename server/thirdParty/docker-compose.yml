@@ -1,3 +1,4 @@
 include:
   - ./mysql/docker-compose.yml
   - ./redis/docker-compose.yml
+  - ./rabbitmq/docker-compose.yml
