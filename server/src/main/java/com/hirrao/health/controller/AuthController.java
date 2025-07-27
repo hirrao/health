@@ -1,16 +1,15 @@
 package com.hirrao.health.controller;
 
-import com.hirrao.health.common.model.AuthUser;
-import com.hirrao.health.common.response.LoginResponse;
-import com.hirrao.health.common.response.Response;
 import com.hirrao.health.common.request.LoginRequest;
 import com.hirrao.health.common.request.RegisterRequest;
 import com.hirrao.health.common.request.ResetPasswordByPasswordRequest;
+import com.hirrao.health.common.response.LoginResponse;
+import com.hirrao.health.common.response.Response;
+import com.hirrao.health.common.utils.UserUtil;
 import com.hirrao.health.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,9 +50,7 @@ public class AuthController {
     @PreAuthorize("@permissionService.login")
     public ResponseEntity<Response<Integer>> resetPasswordByPassword(
             @RequestBody ResetPasswordByPasswordRequest request) {
-        var user = (AuthUser) SecurityContextHolder.getContext()
-                                                   .getAuthentication()
-                                                   .getPrincipal();
+        var user = UserUtil.get();
         authService.resetPassword(user.username(), request.oldPassword(),
                                   request.newPassword());
         return Response.ok(null);

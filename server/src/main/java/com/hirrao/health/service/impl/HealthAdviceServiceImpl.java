@@ -5,6 +5,7 @@ import com.hirrao.health.common.enums.RedisKeyEnum;
 import com.hirrao.health.common.exception.ClientException;
 import com.hirrao.health.common.response.HealthAdviceArticleListResponse;
 import com.hirrao.health.common.response.HealthAdviceArticleResponse;
+import com.hirrao.health.common.utils.ImageUtil;
 import com.hirrao.health.dao.HealthAdviceDao;
 import com.hirrao.health.dao.UserDao;
 import com.hirrao.health.entity.HealthAdvice;
@@ -14,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 @Slf4j
@@ -22,16 +24,19 @@ public class HealthAdviceServiceImpl implements HealthAdviceService {
     private final UserDao userDao;
     private final HealthAdviceConverter converter;
     private final RedisService redisService;
+    private final ImageUtil imageUtil;
 
     @Autowired
     public HealthAdviceServiceImpl(HealthAdviceDao healthAdviceDao,
                                    UserDao userDao,
                                    HealthAdviceConverter converter,
-                                   RedisService redisService) {
+                                   RedisService redisService,
+                                   ImageUtil imageUtil) {
         this.healthAdviceDao = healthAdviceDao;
         this.userDao = userDao;
         this.converter = converter;
         this.redisService = redisService;
+        this.imageUtil = imageUtil;
     }
 
     @Override
@@ -73,4 +78,49 @@ public class HealthAdviceServiceImpl implements HealthAdviceService {
         return converter.toDtoList(pageData.getRecords(), authorNames,
                                    pageData.getCurrent(), pageData.getSize());
     }
+
+    @Override
+    public String createArticle(String title, String content, String imageUrl,
+                                Long authorId) {
+        if (title.length() > 127) {
+            throw new ClientException(HttpStatus.UNPROCESSABLE_ENTITY,
+                                      "标题过长");
+        }
+        if (imageUrl != null) {
+            if (!imageUtil.exists(imageUrl)) {
+                throw new ClientException(HttpStatus.NOT_FOUND, "图片不存在");
+            }
+        }
+        var article = new HealthAdvice(title, content, imageUrl, authorId);
+        healthAdviceDao.save(article);
+        return String.valueOf(article.getId());
+    }
+
+    @Override
+    public void updateArticle(Long id, String title, String content,
+                              String imageUrl) {
+        var article = healthAdviceDao.getById(id);
+        if (article == null) {
+            throw new ClientException(HttpStatus.NOT_FOUND, "文章不存在");
+        }
+        if (title.length() > 127) {
+            throw new ClientException(HttpStatus.UNPROCESSABLE_ENTITY,
+                                      "标题过长");
+        }
+        if (imageUrl != null) {
+            if (!imageUtil.exists(imageUrl)) {
+                throw new ClientException(HttpStatus.NOT_FOUND, "图片不存在");
+            }
+        }
+        article.setTitle(title);
+        article.setContent(content);
+        article.setImage(imageUrl);
+        healthAdviceDao.updateById(article);
+    }
+
+    @Override
+    public String uploadImage(MultipartFile file) {
+        return imageUtil.createImage(file);
+    }
+
 }

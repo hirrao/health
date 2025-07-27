@@ -18,4 +18,12 @@ public class HealthAdvice {
     private Long author;
     private LocalDateTime createTime;
     private LocalDateTime updateTime;
+
+    public HealthAdvice(String title, String content, String image,
+                        Long author) {
+        this.title = title;
+        this.content = content;
+        this.image = image;
+        this.author = author;
+    }
 }

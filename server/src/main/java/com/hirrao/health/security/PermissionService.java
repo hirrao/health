@@ -16,4 +16,15 @@ public class PermissionService {
         }
         return false;
     }
+
+    public boolean isAdmin() {
+        var principal = SecurityContextHolder.getContext()
+                                             .getAuthentication()
+                                             .getPrincipal();
+        if (principal instanceof AuthUser authUser) {
+            return authUser.role()
+                           .isAdmin();
+        }
+        return false;
+    }
 }

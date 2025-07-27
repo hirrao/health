@@ -10,6 +10,10 @@ public record Response<T>(int code, String message,
         return ResponseEntity.ok(new Response<>(0, "Success", data));
     }
 
+    public static <T> ResponseEntity<Response<T>> ok() {
+        return ResponseEntity.ok(new Response<>(0, "Success", null));
+    }
+
     public static <T> ResponseEntity<Response<T>> error(HttpStatus status,
                                                         int code,
                                                         String message) {
