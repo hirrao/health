@@ -4,6 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: hirrao/health-mysql:latest
+    container_name: health-mysql
     environment:
       - APP_DATABASE=health
       - APP_USER=hirrao

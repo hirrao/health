@@ -4,5 +4,6 @@ services:
       context: .
       dockerfile: Dockerfile
     image: hirrao/health-redis:latest
+    container_name: health-redis
     ports:
       - "6379:6379"
