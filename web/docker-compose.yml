@@ -6,3 +6,4 @@ services:
     image: hirrao/health-web:latest
     ports:
       - '80:80'
+      - '443:443'
